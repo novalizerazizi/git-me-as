@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First-Code Fullstack | @novalizerazizi</title>
+  <!-- Tailwind CSS CDN with dark mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            dark: {
+              900: '#0b0f19',
+              800: '#111827',
+              700: '#1f2937',
+              600: '#374151'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Glow Background Accents -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+  <div class="fixed bottom-10 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- Navigation / Top Header -->
+  <header class="border-b border-slate-800/80 bg-[#0e1424]/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <i data-lucide="layers" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">
+            My First-Code Fullstack
+          </span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            v1.0.0
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Live API Status Indicator -->
+        <div id="api-status-badge" class="flex items-center space-x-2 text-xs px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700/60">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-slate-300 font-mono" id="api-status-text">Connecting...</span>
+        </div>
+
+        <a href="https://github.com/novalizerazizi/git-me-as" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition shadow-sm">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Hero / Welcome Banner -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 p-6 sm:p-8">
+      <div class="relative z-10 max-w-3xl space-y-3">
+        <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Fullstack Learning Journey by @novalizerazizi</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          From First Commit to Fullstack Mastery 🚀
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+          Selamat datang di hub pembelajaran Fullstack pertama saya. Repositori ini menggabungkan fondasi Frontend modern, REST API backend (Node.js & Python), workflow Git profesional, serta tracking progres secara interaktif.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats & KPI Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Card 1: Progress -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm hover:border-slate-700 transition">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider">Roadmap Progress</span>
+          <i data-lucide="compass" class="w-4 h-4 text-indigo-400"></i>
+        </div>
+        <div class="flex items-baseline space-x-2">
+          <span class="text-2xl font-bold text-white" id="stat-progress-text">50%</span>
+          <span class="text-xs text-slate-400" id="stat-modules-ratio">(3 / 6 Selesai)</span>
+        </div>
+        <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+          <div id="stat-progress-bar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full transition-all duration-500" style="width: 50%"></div>
+        </div>
+      </div>
+
+      <!-- Card 2: Environment Stack -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm hover:border-slate-700 transition">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider">Dev Ecosystem</span>
+          <i data-lucide="cpu" class="w-4 h-4 text-emerald-400"></i>
+        </div>
+        <div class="text-sm font-semibold text-white space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-400">Node.js:</span>
+            <span class="text-emerald-400 font-mono">v24 (LTS)</span>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-400">Python:</span>
+            <span class="text-emerald-400 font-mono">3.15</span>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-400">Git:</span>
+            <span class="text-emerald-400 font-mono">2.56</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Backend Runtime -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm hover:border-slate-700 transition">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider">Active Backend</span>
+          <i data-lucide="server" class="w-4 h-4 text-cyan-400"></i>
+        </div>
+        <div class="text-2xl font-bold text-white" id="stat-backend-type">Node Native</div>
+        <div class="text-xs text-slate-400 mt-1 flex items-center space-x-1">
+          <i data-lucide="clock" class="w-3 h-3"></i>
+          <span>Uptime: <span id="stat-uptime" class="font-mono text-slate-300">0s</span></span>
+        </div>
+      </div>
+
+      <!-- Card 4: Dev Notes -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm hover:border-slate-700 transition">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider">Dev Journal</span>
+          <i data-lucide="book-open" class="w-4 h-4 text-violet-400"></i>
+        </div>
+        <div class="text-2xl font-bold text-white" id="stat-notes-count">2</div>
+        <div class="text-xs text-slate-400 mt-1">Catatan belajar tersimpan</div>
+      </div>
+    </div>
+
+    <!-- Tab / Section Navigation -->
+    <div class="border-b border-slate-800 flex space-x-6 text-sm font-medium">
+      <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="tab-btn pb-3 text-indigo-400 border-b-2 border-indigo-500 font-semibold flex items-center space-x-2">
+        <i data-lucide="map" class="w-4 h-4"></i>
+        <span>Fullstack Roadmap</span>
+      </button>
+      <button onclick="switchTab('api')" id="tab-btn-api" class="tab-btn pb-3 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2">
+        <i data-lucide="terminal" class="w-4 h-4"></i>
+        <span>Live API Playground</span>
+      </button>
+      <button onclick="switchTab('notes')" id="tab-btn-notes" class="tab-btn pb-3 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2">
+        <i data-lucide="edit-3" class="w-4 h-4"></i>
+        <span>Dev Journal</span>
+      </button>
+      <button onclick="switchTab('snippets')" id="tab-btn-snippets" class="tab-btn pb-3 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2">
+        <i data-lucide="code" class="w-4 h-4"></i>
+        <span>Cheat Sheet & Snippets</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: ROADMAP & MODULES -->
+    <section id="tab-content-roadmap" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2">
+        <div>
+          <h2 class="text-lg font-bold text-white">Fullstack Learning Path</h2>
+          <p class="text-xs text-slate-400">Klik checklist pada kartu untuk menandai progres belajar Anda.</p>
+        </div>
+        <div class="flex items-center space-x-2" id="filter-buttons">
+          <button onclick="filterModules('all')" class="filter-btn active-filter px-3 py-1 rounded-md text-xs font-medium bg-indigo-600 text-white">Semua</button>
+          <button onclick="filterModules('Frontend')" class="filter-btn px-3 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Frontend</button>
+          <button onclick="filterModules('Backend')" class="filter-btn px-3 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Backend</button>
+          <button onclick="filterModules('DevOps')" class="filter-btn px-3 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">DevOps</button>
+        </div>
+      </div>
+
+      <!-- Modules Grid Container -->
+      <div id="modules-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamically rendered via app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 2: LIVE API PLAYGROUND -->
+    <section id="tab-content-api" class="hidden space-y-4">
+      <div>
+        <h2 class="text-lg font-bold text-white">Interactive REST API Playground</h2>
+        <p class="text-xs text-slate-400">Uji endpoint backend langsung dari browser Anda tanpa aplikasi pihak ketiga.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Endpoint Buttons -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
+          <h3 class="text-xs font-semibold uppercase text-slate-400 mb-3 tracking-wider">Pilih Endpoint</h3>
+          
+          <button onclick="callApi('/api/health', 'GET')" class="w-full text-left p-3 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/60 hover:border-indigo-500/50 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-400">GET</span>
+              <span class="text-[11px] text-slate-500 font-mono">/api/health</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1 font-medium">Server Health & System Info</p>
+          </button>
+
+          <button onclick="callApi('/api/profile', 'GET')" class="w-full text-left p-3 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/60 hover:border-indigo-500/50 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-400">GET</span>
+              <span class="text-[11px] text-slate-500 font-mono">/api/profile</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1 font-medium">Developer Profile & Stats</p>
+          </button>
+
+          <button onclick="callApi('/api/modules', 'GET')" class="w-full text-left p-3 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/60 hover:border-indigo-500/50 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-400">GET</span>
+              <span class="text-[11px] text-slate-500 font-mono">/api/modules</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1 font-medium">Roadmap Modules & Progress</p>
+          </button>
+
+          <button onclick="callApi('/api/notes', 'GET')" class="w-full text-left p-3 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/60 hover:border-indigo-500/50 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-400">GET</span>
+              <span class="text-[11px] text-slate-500 font-mono">/api/notes</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1 font-medium">All Dev Journal Notes</p>
+          </button>
+
+          <button onclick="callApi('/api/snippets', 'GET')" class="w-full text-left p-3 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/60 hover:border-indigo-500/50 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-emerald-400">GET</span>
+              <span class="text-[11px] text-slate-500 font-mono">/api/snippets</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1 font-medium">Fullstack Code Snippets</p>
+          </button>
+        </div>
+
+        <!-- Response Viewer -->
+        <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-slate-400">Status Response:</span>
+              <span id="api-response-status" class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-slate-800 text-slate-400">Menunggu Permintaan...</span>
+            </div>
+            <span id="api-response-time" class="text-xs text-slate-500 font-mono"></span>
+          </div>
+
+          <pre id="api-response-body" class="bg-slate-950 p-4 rounded-lg font-mono text-xs text-emerald-300 overflow-x-auto flex-grow max-h-[420px] leading-relaxed">
+// Klik salah satu endpoint di sebelah kiri untuk melihat output response JSON secara live.
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DEV JOURNAL (NOTES) -->
+    <section id="tab-content-notes" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- New Note Form -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center space-x-2">
+            <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+            <span>Tambah Catatan Belajar</span>
+          </h3>
+          <form id="note-form" onsubmit="handleNoteSubmit(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Judul Catatan</label>
+              <input type="text" id="note-title" required placeholder="Contoh: Belajar Async/Await" 
+                     class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Kategori / Tag</label>
+              <select id="note-tag" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                <option value="Concept">Concept</option>
+                <option value="Milestone">Milestone 🎉</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="Git & CLI">Git & CLI</option>
+                <option value="Bug Fix">Bug Fix 🐛</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Isi Pembelajaran</label>
+              <textarea id="note-content" required rows="4" placeholder="Tuliskan pemahaman penting hari ini..." 
+                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs transition flex items-center justify-center space-x-1">
+              <i data-lucide="save" class="w-3.5 h-3.5"></i>
+              <span>Simpan Catatan</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Notes List Container -->
+        <div class="lg:col-span-2 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">Daftar Catatan (@novalizerazizi)</h3>
+            <span class="text-xs text-slate-400" id="notes-counter-label">2 Catatan</span>
+          </div>
+          <div id="notes-container" class="space-y-3">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CHEAT SHEET & SNIPPETS -->
+    <section id="tab-content-snippets" class="hidden space-y-4">
+      <div>
+        <h2 class="text-lg font-bold text-white">Fullstack Developer Cheat Sheet</h2>
+        <p class="text-xs text-slate-400">Kumpulan kode esensial siap pakai untuk proyek Fullstack harian Anda.</p>
+      </div>
+
+      <div id="snippets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamically rendered via app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-[#0e1424] py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="code" class="w-4 h-4 text-indigo-400"></i>
+        <span>Dibuat dengan semangat belajar oleh <a href="https://github.com/novalizerazizi" target="_blank" class="text-indigo-400 hover:underline font-semibold">@novalizerazizi</a></span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>MIT License</span>
+        <span>•</span>
+        <a href="https://github.com/novalizerazizi/git-me-as" target="_blank" class="hover:text-slate-200">Repository git-me-as</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

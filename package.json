@@ -1,0 +1,23 @@
+{
+  "name": "my-first-code-fullstack",
+  "version": "1.0.0",
+  "description": "Interactive Fullstack Learning Dashboard & Starter Hub by @novalizerazizi",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "python:api": "python backend/app.py"
+  },
+  "keywords": [
+    "fullstack",
+    "learning-dashboard",
+    "nodejs",
+    "python",
+    "frontend",
+    "backend",
+    "git"
+  ],
+  "author": "novalizerazizi",
+  "license": "MIT",
+  "dependencies": {}
+}
