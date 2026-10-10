@@ -17,6 +17,12 @@
 
 [✨ Buka Dashboard](#-fitur-utama) • [🗺️ Roadmap](#-peta-jalan-belajar-fullstack) • [⚡ Mulai Cepat](#-cara-menjalankan-proyek) • [📡 Dokumentasi API](#-dokumentasi-rest-api) • [📖 Panduan Git](docs/GIT_GUIDE.md)
 
+<p align="center">
+  <a href="https://codespaces.new/novalizerazizi/git-me-as">
+    <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces" />
+  </a>
+</p>
+
 ---
 
 </div>

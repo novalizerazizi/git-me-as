@@ -1,0 +1,28 @@
+{
+  "name": "My First-Code Fullstack DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "forwardPorts": [3000, 8000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Fullstack Dashboard",
+      "onAutoForward": "openPreview"
+    },
+    "8000": {
+      "label": "Python API Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "postCreateCommand": "echo '✅ Codespace is ready! Run npm start to launch the dashboard.'"
+}
